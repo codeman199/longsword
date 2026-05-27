@@ -131,7 +131,7 @@ function game.drawUI()
         gfx.drawTextAligned(
             "Press A to Start",
             200,
-            120,
+            50,
             kTextAlignment.center
         )
 

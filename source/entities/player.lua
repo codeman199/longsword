@@ -4,7 +4,7 @@ local gfx = pd.graphics
 local player = {}
 
 -- Defaults
-local START_X = 180
+local START_X = 200
 local START_Y = 120
 local SPEED = 3
 
