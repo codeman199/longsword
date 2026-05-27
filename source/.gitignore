@@ -1,2 +1,2 @@
 # Ignore builds directory
-builds/
+builds/**
