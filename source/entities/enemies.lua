@@ -24,7 +24,7 @@ end
 function enemies.spawnGoblin()
     local goblin = gfx.sprite.new(goblinImage)
 
-    goblin:setCollideRect(4, 4, 24, 24)
+    goblin:setCollideRect(3, 3, 10, 10)
 
     -- Spawn from random edge
     local side = math.random(1, 4)

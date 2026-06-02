@@ -10,7 +10,7 @@ local SPEED = 3
 
 local image = gfx.image.new("images/knight")
 local sprite = gfx.sprite.new(image)
-sprite:setCollideRect(8, 8, 16, 16)
+sprite:setCollideRect(8, 8, 20, 20)
 sprite:add()
 
 

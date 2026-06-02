@@ -9,7 +9,7 @@ local START_WIDTH = 1
 local START_SPEED = 1
 local START_ANGLE = 0
 
-local DISTANCE = 16
+local DISTANCE = 20
 local THICKNESS = 12
 local IMAGE_OFFSET = 90
 
@@ -27,9 +27,9 @@ local width = START_WIDTH
 local upgradeLevel = 0
 
 -- Images
-local hilt = gfx.image.new("images/sword-hilt")
-local blade = gfx.image.new("images/sword-blade")
-local tip = gfx.image.new("images/sword-tip")
+local hilt = gfx.image.new("images/hilt_w2")
+local blade = gfx.image.new("images/blade_w2")
+local tip = gfx.image.new("images/tip_w2")
 
 local _, hiltHeight = hilt:getSize()
 local _, bladeHeight = blade:getSize()
@@ -90,10 +90,10 @@ function sword.draw(playerX, playerY)
     local halfStretch = (bladeLength - bladeHeight) / 2
 
     local bladeX =
-        playerX + (DISTANCE + hiltHeight + halfStretch) * dx
+        playerX + (DISTANCE + (hiltHeight - bladeHeight) + halfStretch) * dx
 
     local bladeY =
-        playerY + (DISTANCE + hiltHeight + halfStretch) * dy
+        playerY + (DISTANCE + (hiltHeight - bladeHeight) + halfStretch) * dy
 
     blade:drawRotated(
         bladeX,
@@ -104,7 +104,7 @@ function sword.draw(playerX, playerY)
     )
 
     -- Tip
-    local tipOffset = DISTANCE + hiltHeight + bladeLength
+    local tipOffset = (DISTANCE + (hiltHeight - bladeHeight) + bladeLength) - 2
 
     tipX = playerX + tipOffset * dx
     tipY = playerY + tipOffset * dy
@@ -136,6 +136,32 @@ function sword.checkCollision(playerX, playerY, enemyX, enemyY)
         (enemyY - projY) ^ 2
 
     return distSq < (THICKNESS * THICKNESS)
+end
+
+function sword.isGoblinInSwingArc(goblinX, goblinY, knightX, knightY,
+                                  prevAngle, currentAngle, swordLength)
+    -- distance check first (cheap)
+    local dx = goblinX - knightX
+    local dy = goblinY - knightY
+    local dist = math.sqrt(dx * dx + dy * dy)
+    if dist > swordLength then return false end
+
+    -- angle check against the swept arc
+    local goblinAngle = math.atan(dy, dx)
+    return sword.isAngleBetween(goblinAngle, prevAngle, currentAngle)
+end
+
+function sword.isAngleBetween(angle, start, finish)
+    -- normalize all angles to [0, 2π]
+    local function norm(a) return a % (2 * math.pi) end
+    angle  = norm(angle)
+    start  = norm(start)
+    finish = norm(finish)
+    if start <= finish then
+        return angle >= start and angle <= finish
+    else
+        return angle >= start or angle <= finish -- wraps around 0
+    end
 end
 
 -- Initial setup
