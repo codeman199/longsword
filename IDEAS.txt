@@ -1,0 +1,42 @@
+IDEAS
+
+Core concept
+	- Sword grows in legth and width throughout the game
+	- Becomes stronger, but harder to swing
+	- Survive until you die!
+
+
+Version 1: Wave survival
+	- Kill all enemies in wave and then have 10 extra seconds to pick up any lingering coins
+	- Enter shop phase where you pick upgrades for your sword with your coins
+		- Length controls speed (and length) 
+		- Width controls damage (and width) but reduces swing speed
+	- Enemies get faster and have more health with each wave
+	- Go until your sword is too heavy or enemies are too fast
+		- Needs to be balanced so the sword doesn't get too long making the game easy
+	
+
+Version 2: Scale the world (universe?)
+	- Start with a large detailed knight character (128x128 pixels) on the screen and short dagger
+	- Kill small enemies on a battle field and earn coins
+	- Upgrade your sword, as your sword grows the screen zooms out, reducing your knight to a 64x64 character allowing your sword to fit on the screen better
+	- This process continues, the enemies get bigger, your sword gets bigger, but the knight remains the same size
+	- 128 > 64 > 32 > 16 > 8 > 4 > 1
+	- Soon the long sword is orbiting a single pixel on the screen and you're fighting kaiju sized monsters and cranking left and right to attack
+	
+Version 3: Scale the universe
+	- Takes the idea from version 2 and goes a step further, now the game scales beyond the knight
+	- Can even go a step further and scale the universe:
+		- 4 scale tiers for each level (64x64 > 32x32 > 16x16 > 8x8):
+			- Knight (can still start at 128)
+			- Castle
+			- Continent
+			- Planet
+			- Galaxy
+	- Different enemies at each level, lots of sprite work, but can keep them simple with a few cool enemy types per level
+		- Find ways to mix up the enemy variety without shaking up the core gameplay too much
+	- Story mode
+		- Katamari style level system where you start with knight levels and progress into levels that allow you to get bigger and see more of the game:
+			- Defeat the boss (different bosses for each zoom level)
+			- Grow sword to X meters before time runs out
+			- Defeat X enemies without dying

@@ -1,3 +1,4 @@
 # Ignore builds directory
 builds/**
 asperite/**
+source/images/spriterot.exe
