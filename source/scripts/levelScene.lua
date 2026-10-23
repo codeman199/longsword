@@ -1,6 +1,7 @@
 import "scripts/entities/player/player"
 import "scripts/entities/sword/sword"
 import "scripts/entities/enemies/goblin"
+import "scripts/hud"
 
 local pd <const> = playdate
 local gfx <const> = playdate.graphics
@@ -13,8 +14,8 @@ function LevelScene:init(game, curLevel, time, playerHealth)
     self.playerHealth = playerHealth
 
     -- TODO: Calculate level experience scaling
-    --local levelExperience = 6 + curLevel * 6 + math.max(0, (curLevel - 7) * 12) + math.max(0, (curLevel - 4) * 6)
-    --self.hud = HUD(time, levelExperience, self)
+    local levelExperience = 6 + curLevel * 6 + math.max(0, (curLevel - 7) * 12) + math.max(0, (curLevel - 4) * 6)
+    self.hud = HUD(time, levelExperience, self)
     self:setupLevelLayout()
     self:setupEnemySpawner()
 
@@ -125,7 +126,7 @@ function LevelScene:enemyDied(experience)
     if experience > 0 then
         self.enemiesDefeated += 1
     end
-    --self.hud:addExperience(experience)
+    self.hud:addExperience(experience)
 end
 
 function LevelScene:levelDefeated(playerHealth)

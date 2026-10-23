@@ -11,14 +11,15 @@ function Healthbar:init(player)
 
     -- Drawing
     self.drawHeight = 6
-    self.maxDrawWidth = 30
+    self.maxDrawWidth = 50
     self.drawWidth = self.maxDrawWidth
 
-    self.drawOffset = 25
+    self.drawOffsetX = 170
+    self.drawOffsetY = 110
 end
 
 function Healthbar:update()
-    local drawX, drawY = self.player.x, self.player.y + self.drawOffset
+    local drawX, drawY = self.player.x - self.drawOffsetX, self.player.y - self.drawOffsetY
     self:moveTo(drawX, drawY)
 end
 
@@ -34,9 +35,9 @@ function Healthbar:updateBarImage()
     local barImage = gfx.image.new(self.maxDrawWidth, self.drawHeight)
     self.drawWidth = (self.player.health / self.player.maxHealth) * self.maxDrawWidth
     gfx.pushContext(barImage)
-    gfx.setColor(gfx.kColorBlack)
-    gfx.fillRect(0, 0, self.maxDrawWidth, self.drawHeight)
     gfx.setColor(gfx.kColorWhite)
+    gfx.fillRect(0, 0, self.maxDrawWidth, self.drawHeight)
+    gfx.setColor(gfx.kColorBlack)
     gfx.drawRect(0, 0, self.maxDrawWidth, self.drawHeight)
     gfx.fillRect(0, 0, self.drawWidth, self.drawHeight)
     gfx.popContext()
